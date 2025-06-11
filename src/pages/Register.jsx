@@ -1,8 +1,32 @@
 
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../context/AuthContext/AuthContext';
 
 const Register = () => {
+
+    const {createUser}=use(AuthContext);
+
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photoURL = form.photoURL.value;
+        console.log(name,email,password,photoURL);
+
+
+        createUser(email, password)
+            .then(result => {
+            console.log(result.user);
+        }).catch((error) => {
+            console.log(error);
+  });
+
+    }
+
     return (
        <div
       className="min-h-screen bg-cover bg-center relative flex justify-center items-center px-4"
@@ -14,7 +38,7 @@ const Register = () => {
          Please Register Now !!
         </h2>
 
-        <form onSubmit={''} className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
   <div>
     <label className="label text-white">Name</label>

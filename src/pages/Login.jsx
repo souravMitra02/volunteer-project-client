@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../context/AuthContext/AuthContext';
 
 const Login = () => {
+
+    const {loginUser} = use(AuthContext);
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+       const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value; 
+
+        loginUser(email, password)
+            .then(result => {
+            console.log(result.user);
+            }).catch(error => {
+            console.log(error);
+        })
+    }
     return (
          <div
       className="min-h-screen bg-cover bg-center relative flex justify-center items-center px-4"
-     
     >
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
@@ -15,7 +31,7 @@ const Login = () => {
           <span className="text-orange-500">Mate</span>
         </h2>
 
-        <form onSubmit={''} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="label text-white">Email</label>
             <input
