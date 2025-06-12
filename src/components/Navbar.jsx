@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
 
@@ -27,8 +28,10 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
      {links}
     </ul>
-  </div>
-  <div className="navbar-end gap-2">
+        </div>
+        
+        <div className="navbar-end gap-2">
+          <ThemeToggle></ThemeToggle>
     <NavLink to={'/register'} className="underline  font-semibold">Register</NavLink>
     <NavLink to={'/login'} className="bg-orange-500 hover:bg-orange-600 px-4 py-1 rounded  font-semibold">Login</NavLink>
   </div>
