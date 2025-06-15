@@ -6,10 +6,12 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import ErrorPage from "../pages/ErrorPage";
 export const router = createBrowserRouter([
     {
     path: "/",
-        element: <MainLayout></MainLayout>,
+    element: <MainLayout></MainLayout>,
+        errorElement : <ErrorPage></ErrorPage>,
         children: [
             {
             index: true,
