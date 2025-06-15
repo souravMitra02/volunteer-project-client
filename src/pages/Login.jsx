@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import { Helmet } from 'react-helmet';
 
 
 const Login = () => {
@@ -54,7 +55,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center relative flex justify-center items-center px-4">
+      <div className="min-h-screen bg-cover bg-center relative flex justify-center items-center px-4">
+          <Helmet>
+              <title>Login | Volunteer Hub</title>
+          </Helmet>
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
       <div className="z-10 w-full max-w-md bg-opacity-90 rounded-lg shadow-lg p-6 md:p-10 border-2 border-white/90 m-10">

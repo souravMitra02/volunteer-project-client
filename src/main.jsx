@@ -5,10 +5,11 @@ import App from './App.jsx'
 import { RouterProvider } from 'react-router'
 import { router } from './routes/Routes.jsx'
 import AuthProvider from './context/AuthContext/AuthProvider.jsx'
+import { Helmet } from 'react-helmet'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
+       <AuthProvider>
        <RouterProvider router={router}></RouterProvider>
    </AuthProvider>
   </StrictMode>,

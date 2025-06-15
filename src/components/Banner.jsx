@@ -11,10 +11,15 @@ import banner1 from '../assets/image1.jpg';
 import banner2 from '../assets/image2.jpg';
 import banner3 from '../assets/image3.jpg';
 import { Hammer, Megaphone, MousePointerClick } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 const Banner = () => {
   return (
-    <div className="relative w-full h-[80vh] md:h-[100vh] mb-80">
+      <div className="relative w-full h-[80vh] md:h-[100vh] mb-80">
+           <Helmet>
+        <title>Home | Volunteer Hub</title>
+      </Helmet>
+
       {/* Overlay Text */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-20 px-6 max-w-3xl">
         <h1 className="text-4xl md:text-4xl font-extrabold tracking-wide drop-shadow-lg mb-5">
