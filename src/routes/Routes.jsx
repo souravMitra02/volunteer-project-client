@@ -7,6 +7,9 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
+import AddVolunteerPost from "../pages/AddVolunteerPost";
+import PostDetails from "../pages/PostDetails";
 export const router = createBrowserRouter([
     {
     path: "/",
@@ -24,7 +27,23 @@ export const router = createBrowserRouter([
           {
             path: '/login',
             element : <Login></Login>
-          }
+          },
+          {
+        path: '/add-post',
+        element: (
+          <PrivateRoute>
+           <AddVolunteerPost></AddVolunteerPost>
+          </PrivateRoute>
+        )
+          },
+          {
+        path: "/post/:id",
+        element: (
+          <PrivateRoute>
+           <PostDetails></PostDetails>
+          </PrivateRoute>
+        )
+      }
     ]
   },
 ]);
