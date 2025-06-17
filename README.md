@@ -1,12 +1,55 @@
-# React + Vite
+# Volunteer Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live URL**: [https://your-volunteer-hub-site.netlify.app](https://your-volunteer-hub-site.netlify.app)
 
-Currently, two official plugins are available:
+## Project Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Volunteer Hub is a full-stack web application that connects individuals who want to volunteer with organizations or individuals in need. It allows users to post volunteer requests or respond to those requests, helping build a connected and compassionate community.
 
-## Expanding the ESLint configuration
+## Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Firebase Authentication (Email/Password, Google Sign-in)
+- Protected Routes with Role-based Access
+- Add Volunteer Need Post
+- Browse All Volunteer Posts
+- Volunteer Request Details Page
+- Like Button with Logic (can’t like own post)
+- Manage My Posts (Update/Delete own posts only)
+- Theme Toggle (Light/Dark Mode)
+- Framer Motion Animations on Home Page
+- Responsive Layout for Mobile & Desktop
+- Real-time Toast & SweetAlert Notifications
+- Dynamic Title on each page
+- Error Pages with custom images
+
+## Tech Stack
+
+- **Frontend**: React, Tailwind CSS, DaisyUI, React Router
+- **Authentication**: Firebase Auth
+- **Backend**: Express.js, Node.js, MongoDB
+- **Animation**: Framer Motion,  Lottie
+- **Alerts**: SweetAlert2, React Hot Toast
+- **Deployment**: Netlify (client), Render (server)
+
+##  NPM Packages Used
+
+```bash
+"axios"
+"react"
+"react-dom"
+"react-icons"
+"react-router-dom"
+"firebase"
+"sweetalert2"
+"react-hot-toast"
+"framer-motion"
+"react-simple-typewriter"
+"lottie-react"
+"daisyui"
+"tailwindcss"
+"express"
+"cors"
+"jsonwebtoken"
+"dotenv"
+"mongodb"
+```
