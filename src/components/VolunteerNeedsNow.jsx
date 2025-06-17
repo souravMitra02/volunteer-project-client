@@ -1,14 +1,14 @@
 // VolunteerNeedsNow.jsx
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
-import VolunteerCard from './VolunteerCard';
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import VolunteerCard from "./VolunteerCard";
 
 const VolunteerNeedsNow = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/volunteer-now')
+    fetch("https://jp-server-ten.vercel.app/volunteer-now")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
@@ -21,9 +21,11 @@ const VolunteerNeedsNow = () => {
   }, []);
 
   if (loading) {
-    return <div className="flex justify-center items-center py-10">
-  <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-</div>;
+    return (
+      <div className="flex justify-center items-center py-10">
+        <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -33,7 +35,9 @@ const VolunteerNeedsNow = () => {
       </h2>
 
       {posts.length === 0 ? (
-        <p className="text-center text-gray-600">No upcoming volunteer posts found.</p>
+        <p className="text-center text-gray-600">
+          No upcoming volunteer posts found.
+        </p>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

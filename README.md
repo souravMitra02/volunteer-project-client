@@ -1,6 +1,6 @@
 # Volunteer Hub
 
-**Live URL**: [https://your-volunteer-hub-site.netlify.app](https://your-volunteer-hub-site.netlify.app)
+**Live URL**: [https://volunteer-project.netlify.app/](https://volunteer-project.netlify.app/)
 
 ## Project Purpose
 

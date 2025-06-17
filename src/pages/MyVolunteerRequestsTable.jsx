@@ -9,7 +9,9 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
     if (!userEmail) return;
 
     setLoading(true);
-    fetch(`http://localhost:3000/volunteer-requests?email=${userEmail}`)
+    fetch(
+      `https://jp-server-ten.vercel.app/volunteer-requests?email=${userEmail}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setRequests(data);
@@ -32,7 +34,7 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/cancel-request/${requestId}`, {
+        fetch(`https://jp-server-ten.vercel.app/cancel-request/${requestId}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -85,12 +87,20 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
       <tbody>
         {requests.map((req) => (
           <tr key={req._id}>
-            <td className="border border-gray-300 p-2">{req.postTitle || "N/A"}</td>
             <td className="border border-gray-300 p-2">
-              {req.deadline ? new Date(req.deadline).toLocaleDateString() : "N/A"}
+              {req.postTitle || "N/A"}
             </td>
-            <td className="border border-gray-300 p-2">{req.organizerName || "N/A"}</td>
-            <td className="border border-gray-300 p-2">{req.location || "N/A"}</td>
+            <td className="border border-gray-300 p-2">
+              {req.deadline
+                ? new Date(req.deadline).toLocaleDateString()
+                : "N/A"}
+            </td>
+            <td className="border border-gray-300 p-2">
+              {req.organizerName || "N/A"}
+            </td>
+            <td className="border border-gray-300 p-2">
+              {req.location || "N/A"}
+            </td>
             <td className="border border-gray-300 p-2">
               <button
                 onClick={() => handleCancel(req._id, req.postTitle)}

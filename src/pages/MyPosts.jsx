@@ -1,8 +1,11 @@
-import React, { useEffect, useState, use } from "react";
-import { AuthContext } from "../context/AuthContext/AuthContext";
+import React, { use, useEffect, useState } from "react";
+
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+
 import MyVolunteerRequestsTable from "./MyVolunteerRequestsTable";
+import { AuthContext } from "../context/AuthContext/AuthContext";
+import axiosSecure from "../hooks/axiosSecure";
 
 const MyPosts = () => {
   const { user } = use(AuthContext);
@@ -10,20 +13,44 @@ const MyPosts = () => {
   const [myRequests, setMyRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user?.email) return;
 
     setLoading(true);
 
-    fetch(`http://localhost:3000/my-posts?email=${user.email}`)
-      .then((res) => res.json())
+    fetch(`https://jp-server-ten.vercel.app/my-posts?email=${user.email}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+        return res.json();
+      })
       .then((data) => {
         setMyPosts(data);
       })
       .catch((error) => console.log(error));
 
-    fetch(`http://localhost:3000/volunteer-requests?email=${user.email}`)
-      .then((res) => res.json())
+    fetch(
+      `https://jp-server-ten.vercel.app/volunteer-requests?email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch requests");
+        }
+        return res.json();
+      })
       .then((data) => setMyRequests(data))
       .catch(() => setMyRequests([]))
       .finally(() => setLoading(false));
@@ -43,69 +70,62 @@ const MyPosts = () => {
       ) : myPosts.length === 0 ? (
         <p>You have not added any volunteer posts yet.</p>
       ) : (
-        <table className="table-auto w-full border-collapse border border-gray-300 mb-8">
+        <table className="table-auto w-full border border-gray-300 mb-8">
           <thead>
             <tr>
-              <th className="border border-gray-300 p-2">Title</th>
-              <th className="border border-gray-300 p-2">Category</th>
-              <th className="border border-gray-300 p-2">Volunteers Needed</th>
-              <th className="border border-gray-300 p-2">Actions</th>
+              <th className="border p-2">Title</th>
+              <th className="border p-2">Category</th>
+              <th className="border p-2">Volunteers Needed</th>
+              <th className="border p-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {myPosts.map((post) => (
               <tr key={post._id}>
-                <td className="border border-gray-300 p-2">{post.postTitle}</td>
-                <td className="border border-gray-300 p-2">{post.category}</td>
-                <td className="border border-gray-300 p-2">
-                  {post.volunteersNeeded}
-                </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border p-2">{post.postTitle}</td>
+                <td className="border p-2">{post.category}</td>
+                <td className="border p-2">{post.volunteersNeeded}</td>
+                <td className="border p-2">
                   <button
                     className="bg-yellow-400 px-2 py-1 mr-2 rounded"
                     onClick={() => navigate(`/update-post/${post._id}`)}
                   >
                     Update
                   </button>
-                 <button
-  className="bg-red-500 px-2 py-1 text-white rounded"
-  onClick={() => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to delete "${post.postTitle}"?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:3000/volunteer-posts/${post._id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then(() => {
-            setMyPosts(prev => prev.filter(p => p._id !== post._id));
-            Swal.fire(
-              'Deleted!',
-              `"${post.postTitle}" has been deleted.`,
-              'success'
-            );
-          })
-          .catch(() => {
-            Swal.fire(
-              'Error!',
-              'Something went wrong while deleting.',
-              'error'
-            );
-          });
-      }
-    });
-  }}
->
-  Delete
-</button>
-
+                  <button
+                    className="bg-red-500 px-2 py-1 text-white rounded"
+                    onClick={() => {
+                      Swal.fire({
+                        title: "Are you sure?",
+                        text: `Do you want to delete "${post.postTitle}"?`,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#3085d6",
+                        confirmButtonText: "Yes, delete it!",
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          axiosSecure
+                            .delete(`/volunteer-posts/${post._id}`)
+                            .then(() => {
+                              setMyPosts((prev) =>
+                                prev.filter((p) => p._id !== post._id)
+                              );
+                              Swal.fire(
+                                "Deleted!",
+                                "Your post is deleted.",
+                                "success"
+                              );
+                            })
+                            .catch(() => {
+                              Swal.fire("Error!", "Delete failed.", "error");
+                            });
+                        }
+                      });
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -125,7 +145,9 @@ const MyPosts = () => {
           You have not made any volunteer requests yet.
         </p>
       ) : (
-        <MyVolunteerRequestsTable userEmail={user.email}></MyVolunteerRequestsTable>
+        <MyVolunteerRequestsTable
+          userEmail={user.email}
+        ></MyVolunteerRequestsTable>
       )}
     </div>
   );
