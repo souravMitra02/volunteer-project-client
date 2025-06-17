@@ -28,16 +28,22 @@ const Navbar = () => {
       });
   };
 
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "text-orange-500 font-semibold underline"
+      : "hover:text-orange-400 font-medium";
+
   const links = (
     <>
-      <li><NavLink to='/' className="hover:text-orange-400 font-medium">Home</NavLink></li>
-      <li><NavLink to='/posts' className="hover:text-orange-400 font-medium">All Volunteer Posts</NavLink></li>
+      <li><NavLink to='/' className={navLinkClass}>Home</NavLink></li>
+      <li><NavLink to='/posts' className={navLinkClass}>All Volunteer Posts</NavLink></li>
     </>
   );
 
   return (
     <div className="navbar bg-base-100 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto w-full px-4 flex justify-between items-center py-2">
+
         {/* Start */}
         <div className="flex items-center gap-2">
           <div className="dropdown lg:hidden">
@@ -50,8 +56,8 @@ const Navbar = () => {
               {links}
               {user && (
                 <>
-                  <li><NavLink to="/add-post">Add Volunteer Post</NavLink></li>
-                  <li><NavLink to="/my-posts">Manage My Posts</NavLink></li>
+                  <li><NavLink to="/volunteer-posts" className={navLinkClass}>Add Volunteer Post</NavLink></li>
+                  <li><NavLink to="/my-posts" className={navLinkClass}>Manage My Posts</NavLink></li>
                   <li>
                     <button onClick={handleLogout} className="text-red-500 font-semibold flex items-center gap-2">
                       <FaSignOutAlt /> Logout
@@ -68,15 +74,21 @@ const Navbar = () => {
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {links}
+            {user && (
+              <>
+                <li><NavLink to="/volunteer-posts" className={navLinkClass}>Add Volunteer Post</NavLink></li>
+                <li><NavLink to="/my-posts" className={navLinkClass}>Manage My Posts</NavLink></li>
+              </>
+            )}
           </ul>
         </div>
 
-        {/* End */}
+        {/* Right */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
           {!user ? (
             <>
-              <NavLink to='/register' className="underline font-semibold">Register</NavLink>
+              <NavLink to='/register' className={navLinkClass}>Register</NavLink>
               <NavLink to='/login' className="bg-orange-500 hover:bg-orange-600 px-4 py-1 rounded text-white font-semibold">
                 Login
               </NavLink>
@@ -89,8 +101,8 @@ const Navbar = () => {
                 </div>
               </label>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-48 z-50">
-                <li><NavLink to="/volunteer-posts">Add Volunteer Post</NavLink></li>
-                <li><NavLink to="/my-posts">Manage My Posts</NavLink></li>
+                <li><NavLink to="/volunteer-posts" className={navLinkClass}>Add Volunteer Post</NavLink></li>
+                <li><NavLink to="/my-posts" className={navLinkClass}>Manage My Posts</NavLink></li>
                 <li>
                   <button onClick={handleLogout} className="text-red-500 font-semibold flex items-center gap-2">
                     <FaSignOutAlt /> Logout

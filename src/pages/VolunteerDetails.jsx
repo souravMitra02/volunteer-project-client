@@ -20,7 +20,7 @@ const VolunteerDetails = () => {
   );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+      <div className="max-w-3xl mx-auto px-4 py-10">
       <img src={post.thumbnail} alt={post.postTitle} className="w-full h-64 object-cover rounded mb-6" />
       <h2 className="text-3xl font-bold mb-2">{post.postTitle}</h2>
       <p><strong>Category:</strong> {post.category}</p>

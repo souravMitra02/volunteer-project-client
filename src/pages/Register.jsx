@@ -72,7 +72,7 @@ const Register = () => {
           </Helmet>
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-      <div className="z-10 w-full max-w-3xl bg-opacity-90 rounded-lg shadow-lg p-6 md:p-10 border-2 border-white/90 m-10 bg-white/10">
+      <div className="z-10 w-full max-w-3xl bg-opacity-90 rounded-lg shadow-lg p-6 md:p-10 border-2 border-white/90 m-10 bg-white/10 lg:mt-30">
         <h2 className="text-3xl font-bold text-center mb-6 text-white">
           Please Register Now !!
         </h2>
