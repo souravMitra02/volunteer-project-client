@@ -1,7 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
-import { Typewriter } from "react-simple-typewriter";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -15,30 +14,18 @@ import { Helmet } from 'react-helmet';
 
 const Banner = () => {
   return (
-      <div className="relative w-full h-[80vh] md:h-[100vh] mb-80">
-           <Helmet>
+    <div className="relative w-full h-[80vh] md:h-[100vh] mb-80">
+      <Helmet>
         <title>Home | Volunteer Hub</title>
       </Helmet>
 
       {/* Overlay Text */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-20 px-6 max-w-3xl">
-        <h1 className="text-4xl md:text-4xl font-extrabold tracking-wide drop-shadow-lg mb-5">
-          Welcome to <span className="text-indigo-400">Roommate Finder</span>
-          <span className="text-primary">
-            <Typewriter
-              words={[" Best Deals", " Perfect Match"]}
-              loop={0}
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={1000}
-              onLoopDone={() => console.log("Typing Done!")}
-            />
-          </span>
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg mb-5">
+          Volunteer Hub
         </h1>
-        <p className="text-lg md:text-2xl font-light drop-shadow-md mb-8">
-          Find the perfect space <span className="font-semibold">and roommate</span> today!
+        <p className="text-xl md:text-2xl font-light drop-shadow-md mb-8">
+          Connect, Contribute, and Make a Difference in Your Community
         </p>
         <button className="btn btn-primary px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300">
           Get Started
@@ -60,7 +47,7 @@ const Banner = () => {
         {[banner1, banner2, banner3].map((banner, idx) => (
           <SwiperSlide key={idx}>
             <div
-              className="w-full h-[80vh] md:h-[100vh] bg-cover bg-center"
+              className="w-full h-[80vh] md:h-[200vh] bg-cover bg-center"
               style={{ backgroundImage: `url(${banner})` }}
             ></div>
           </SwiperSlide>
