@@ -22,7 +22,7 @@ const MyPosts = () => {
       })
       .catch((error) => console.log(error));
 
-    fetch(`http://localhost:3000/my-volunteer-requests?email=${user.email}`)
+    fetch(`http://localhost:3000/volunteer-requests?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyRequests(data))
       .catch(() => setMyRequests([]))

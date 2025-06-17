@@ -9,18 +9,19 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
     if (!userEmail) return;
 
     setLoading(true);
-    fetch(`http://localhost:3000/my-volunteer-requests?email=${userEmail}`)
-      .then(res => res.json())
-      .then(data => setRequests(data))
-      .catch(err => {
-        console.error(err);
-       ;
+    fetch(`http://localhost:3000/volunteer-requests?email=${userEmail}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRequests(data);
+        setLoading(false);
       })
-     setLoading(false);
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, [userEmail]);
 
-    const handleCancel = (requestId, postTitle) => {
-      console.log(requestId);
+  const handleCancel = (requestId, postTitle) => {
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to cancel your volunteer request for "${postTitle}"?`,
@@ -82,14 +83,11 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
         </tr>
       </thead>
       <tbody>
-              {requests.map((req) =>(
-                  <tr key={req._id}>
+        {requests.map((req) => (
+          <tr key={req._id}>
             <td className="border border-gray-300 p-2">{req.postTitle || "N/A"}</td>
             <td className="border border-gray-300 p-2">
-              {req.deadline
-                ? new Date(req.deadline).toLocaleDateString()
-                : "N/A"}
-                    
+              {req.deadline ? new Date(req.deadline).toLocaleDateString() : "N/A"}
             </td>
             <td className="border border-gray-300 p-2">{req.organizerName || "N/A"}</td>
             <td className="border border-gray-300 p-2">{req.location || "N/A"}</td>
