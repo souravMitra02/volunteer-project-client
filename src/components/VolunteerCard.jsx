@@ -15,7 +15,7 @@ const VolunteerCard = ({ post }) => {
       <p className="text-sm text-gray-600 mt-1">Category: {category}</p>
       <p className="text-sm text-gray-600">Deadline: {new Date(deadline).toLocaleDateString()}</p>
       <Link
-        to={`/volunteer-details/${_id}`}
+        to={`/volunteer-posts/${_id}`}
         className="mt-3 inline-block bg-blue-600 text-white py-1 px-4 rounded hover:bg-blue-700"
       >
         View Details

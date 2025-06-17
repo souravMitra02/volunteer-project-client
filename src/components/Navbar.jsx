@@ -89,7 +89,7 @@ const Navbar = () => {
                 </div>
               </label>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-48 z-50">
-                <li><NavLink to="/add-post">Add Volunteer Post</NavLink></li>
+                <li><NavLink to="/volunteer-posts">Add Volunteer Post</NavLink></li>
                 <li><NavLink to="/my-posts">Manage My Posts</NavLink></li>
                 <li>
                   <button onClick={handleLogout} className="text-red-500 font-semibold flex items-center gap-2">

@@ -8,7 +8,7 @@ const VolunteerNeedsNow = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/')
+    fetch('http://localhost:3000/volunteer-now')
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);

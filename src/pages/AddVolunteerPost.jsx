@@ -24,7 +24,7 @@ const AddVolunteerPost = () => {
       organizerEmail: user?.email,
     };
 
-    fetch('https://localhost:3000/add-post', {
+    fetch('http://localhost:3000/volunteer-posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newPost),

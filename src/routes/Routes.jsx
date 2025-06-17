@@ -1,6 +1,5 @@
 import {
   createBrowserRouter
-  
 } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
@@ -10,40 +9,70 @@ import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost";
 import PostDetails from "../pages/PostDetails";
+import AllVolunteerPosts from "../pages/AllVolunteerPosts";  
+import MyPosts from "../pages/MyPosts";
+import VolunteerDetails from "../pages/VolunteerDetails";
+
 export const router = createBrowserRouter([
-    {
+  {
     path: "/",
     element: <MainLayout></MainLayout>,
-        errorElement : <ErrorPage></ErrorPage>,
-        children: [
-            {
-            index: true,
-            element : <Home></Home>
-          },
-          {
-            path: '/register',
-            element : <Register></Register>
-          },
-          {
-            path: '/login',
-            element : <Login></Login>
-          },
-          {
-        path: '/add-post',
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        index: true,
+        element: <Home></Home>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+     
+      {
+        path: '/posts',
+        element: <AllVolunteerPosts></AllVolunteerPosts>
+      },
+   
+      {
+        path: '/volunteer-posts',
         element: (
           <PrivateRoute>
-           <AddVolunteerPost></AddVolunteerPost>
+            <AddVolunteerPost></AddVolunteerPost>
           </PrivateRoute>
         )
-          },
-          {
+      },
+      {
+        path: "/volunteer-posts/:id",
+          element:(
+    <PrivateRoute>
+    <VolunteerDetails></VolunteerDetails>
+    </PrivateRoute>
+          )
+        
+      },
+     
+      {
         path: "/post/:id",
         element: (
           <PrivateRoute>
-           <PostDetails></PostDetails>
+            <PostDetails></PostDetails>
           </PrivateRoute>
         )
-      }
+      },
+   
+      {
+        path: "/my-posts",
+        element: (
+          <PrivateRoute>
+            <MyPosts></MyPosts>
+          </PrivateRoute>
+        )
+      },
+      
     ]
   },
 ]);
