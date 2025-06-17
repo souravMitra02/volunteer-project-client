@@ -1,65 +1,122 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
+const GridIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <rect x="3" y="3" width="7" height="7" strokeLinecap="round" strokeLinejoin="round" />
+    <rect x="14" y="3" width="7" height="7" strokeLinecap="round" strokeLinejoin="round" />
+    <rect x="14" y="14" width="7" height="7" strokeLinecap="round" strokeLinejoin="round" />
+    <rect x="3" y="14" width="7" height="7" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const TableIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+  </svg>
+);
 
 const AllVolunteerPosts = () => {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [isTableLayout, setIsTableLayout] = useState(false);
+  const navigate = useNavigate();
+
+  const fetchPosts = (search = "") => {
+    fetch(`http://localhost:3000/volunteer-posts?search=${search}`)
+      .then(res => res.json())
+      .then(data => setPosts(data));
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const url = search
-        ? `/volunteer-posts?search=${encodeURIComponent(search)}`
-        : "/volunteer-now";
-      const res = await fetch(url);
-      const data = await res.json();
-      setPosts(data);
-    };
+    fetchPosts();
+  }, []);
 
-    // ডেবাউন্স করার জন্য ৫০০ মিলিসেকেন্ড দেরি
-    const timeoutId = setTimeout(fetchPosts, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [search]);
+  const handleSearch = () => {
+    fetchPosts(searchText);
+  };
 
   return (
-    <div style={{ maxWidth: 900, margin: "auto", padding: 20 }}>
-      <input
-        type="search"
-        placeholder="Search by Post Title"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ width: "100%", padding: 8, marginBottom: 20 }}
-      />
+    <div className="max-w-6xl mx-auto px-4 py-8 mt-20">
+      
+      <div className="flex flex-col sm:flex-row gap-2 mb-6 items-center">
+        <input
+          type="text"
+          placeholder="Search by Post Title"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="input input-bordered w-full sm:w-auto flex-grow"
+        />
+        <button onClick={handleSearch} className="btn btn-primary whitespace-nowrap">
+          Search
+        </button>
 
-      {posts.length === 0 ? (
-        <p>No posts found.</p>
-      ) : (
-        <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-          {posts.map((post) => (
-            <div
-              key={post._id}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: 6,
-                padding: 15,
-                width: 280,
-                boxShadow: "2px 2px 6px #eee",
-              }}
-            >
+        <button
+          onClick={() => setIsTableLayout(prev => !prev)}
+          className="btn btn-secondary whitespace-nowrap flex items-center"
+          title={isTableLayout ? "Show Cards" : "Show Table"}
+        >
+          {isTableLayout ? <GridIcon /> : <TableIcon />}
+        </button>
+      </div>
+
+     
+      {!isTableLayout && (
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+          {posts.map(post => (
+            <div key={post._id} className="card border p-4 rounded shadow-sm flex flex-col">
               <img
                 src={post.thumbnail}
                 alt={post.postTitle}
-                style={{ width: "100%", height: 140, objectFit: "cover", borderRadius: 4 }}
+                className="h-40 w-full object-cover rounded mb-3"
               />
-              <h3>{post.postTitle}</h3>
-              <p>Category: {post.category}</p>
-              <p>Location: {post.location}</p>
-              <p>Volunteers Needed: {post.volunteersNeeded}</p>
-              <Link to={`/post/${post._id}`} style={{ color: "blue" }}>
+              <h2 className="text-xl font-bold">{post.postTitle}</h2>
+              <p><strong>Location:</strong> {post.location}</p>
+              <p><strong>Volunteers Needed:</strong> {post.volunteersNeeded}</p>
+              <p><strong>Category:</strong> {post.category}</p>
+              <button
+                onClick={() => navigate(`/volunteer-posts/${post._id}`)}
+                className="btn btn-outline btn-sm mt-auto self-start"
+              >
                 View Details
-              </Link>
+              </button>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Table Layout */}
+      {isTableLayout && (
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 p-2 text-left">Title</th>
+                <th className="border border-gray-300 p-2 text-left">Location</th>
+                <th className="border border-gray-300 p-2 text-left">Volunteers Needed</th>
+                <th className="border border-gray-300 p-2 text-left">Category</th>
+                <th className="border border-gray-300 p-2 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {posts.map(post => (
+                <tr key={post._id} className="hover:bg-gray-50">
+                  <td className="border border-gray-300 p-2">{post.postTitle}</td>
+                  <td className="border border-gray-300 p-2">{post.location}</td>
+                  <td className="border border-gray-300 p-2">{post.volunteersNeeded}</td>
+                  <td className="border border-gray-300 p-2">{post.category}</td>
+                  <td className="border border-gray-300 p-2">
+                    <button
+                      onClick={() => navigate(`/volunteer-posts/${post._id}`)}
+                      className="btn btn-outline btn-sm"
+                    >
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
