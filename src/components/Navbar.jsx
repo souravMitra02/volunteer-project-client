@@ -37,14 +37,17 @@ const Navbar = () => {
     <>
       <li><NavLink to='/' className={navLinkClass}>Home</NavLink></li>
       <li><NavLink to='/posts' className={navLinkClass}>All Volunteer Posts</NavLink></li>
+      <li><NavLink to='/blogs' className={navLinkClass}>Blogs</NavLink></li>
+      <li><NavLink to='/about' className={navLinkClass}>About Us</NavLink></li>
+      <li><NavLink to='/contact' className={navLinkClass}>Contact</NavLink></li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto w-full px-4 flex justify-between items-center py-2">
+    <div className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
 
-        {/* Start */}
+        {/* Logo & Mobile Dropdown */}
         <div className="flex items-center gap-2">
           <div className="dropdown lg:hidden">
             <label tabIndex={0} className="btn btn-ghost">
@@ -70,9 +73,9 @@ const Navbar = () => {
           <Link to="/" className="text-2xl font-bold text-orange-600">Volunteer Hub</Link>
         </div>
 
-        {/* Center - desktop only */}
+        {/* Desktop Nav */}
         <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 gap-2">
             {links}
             {user && (
               <>
@@ -83,8 +86,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Right */}
-        <div className="flex items-center gap-2">
+        {/* Right Icons */}
+        <div className="flex items-center gap-3">
           <ThemeToggle />
           {!user ? (
             <>
@@ -96,7 +99,7 @@ const Navbar = () => {
           ) : (
             <div className="dropdown dropdown-end hidden lg:block">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom" data-tip={user.displayName || 'User'}>
-                <div className="w-10 rounded-full">
+                <div className="w-10 rounded-full ring ring-orange-400 ring-offset-base-100 ring-offset-2">
                   <img src={user.photoURL || 'https://i.ibb.co/Yb3gfHm/avatar.png'} alt="user" />
                 </div>
               </label>
