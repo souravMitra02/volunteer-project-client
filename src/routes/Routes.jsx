@@ -16,6 +16,7 @@ import BeVolunteerPage from "../pages/BeVolunteerModal";
 import UpdatePost from "../pages/UpdatePost";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
+import ImpactReport from "../pages/ImpactReport";
 
 export const router = createBrowserRouter([
   {
@@ -46,8 +47,8 @@ export const router = createBrowserRouter([
         element : <Contact></Contact>
       },
       {
-        path: 'contact',
-        element : <Contact></Contact>
+        path: 'reports',
+        element : <ImpactReport></ImpactReport>
       },
       {
         path: 'about',
