@@ -1,4 +1,3 @@
-// VolunteerNeedsNow.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import VolunteerCard from "./VolunteerCard";
@@ -29,7 +28,7 @@ const VolunteerNeedsNow = () => {
   }
 
   return (
-    <section className="py-10 px-4 md:px-12">
+    <section className="py-10 px-4 md:px-12 max-w-7xl mx-auto">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
         Volunteer Needs Now
       </h2>
@@ -40,8 +39,8 @@ const VolunteerNeedsNow = () => {
         </p>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {posts.slice(0, 8).map((post) => (
               <VolunteerCard key={post._id} post={post} />
             ))}
           </div>
@@ -49,7 +48,7 @@ const VolunteerNeedsNow = () => {
           <div className="text-center mt-8">
             <Link
               to="/volunteer-posts"
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
             >
               See All
             </Link>
