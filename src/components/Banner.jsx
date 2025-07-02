@@ -1,9 +1,10 @@
-import React from "react";
+import React, { use} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import { Hammer, Megaphone, MousePointerClick } from "lucide-react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router";
+import { useNavigate, Link } from "react-router";
+import { AuthContext } from "../context/AuthContext/AuthContext";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,6 +16,17 @@ import banner2 from "../assets/image2.jpg";
 import banner3 from "../assets/image3.jpg";
 
 const Banner = () => {
+  const navigate = useNavigate();
+  const { user } = use(AuthContext);
+
+  const handleCTAClick = () => {
+    if (user) {
+      navigate("/posts"); 
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -31,12 +43,13 @@ const Banner = () => {
           <p data-aos="fade-up" className="text-lg md:text-2xl font-light drop-shadow-md mb-6">
             Connect, Contribute, and Make a Difference in Your Community
           </p>
+
+          {/* ✅ CTA Button */}
           <button
-            data-aos="fade-up"
-            data-aos-delay="100"
-            className="btn btn-primary px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition duration-300"
+            onClick={handleCTAClick}
+            className="bg-orange-600 hover:bg-orange-700 px-6 py-2 rounded text-white font-semibold mt-2"
           >
-            Get Started
+            {user ? "Browse Posts" : "Join as Volunteer"}
           </button>
         </div>
 
@@ -90,7 +103,9 @@ const Banner = () => {
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-2">
               Thousands of verified listings for volunteer roles in education, health, climate, and more.
             </p>
-            <Link to="/posts" className="text-orange-600 font-semibold mt-3 inline-block hover:underline">Explore Now →</Link>
+            <Link to="/posts" className="text-orange-600 font-semibold mt-3 inline-block hover:underline">
+              Explore Now →
+            </Link>
           </div>
 
           {/* Card 2 */}
@@ -108,7 +123,9 @@ const Banner = () => {
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-2">
               Share your needs, post events, and recruit passionate volunteers with ease.
             </p>
-            <Link to="/volunteer-posts" className="text-blue-600 font-semibold mt-3 inline-block hover:underline">Register →</Link>
+            <Link to="/volunteer-posts" className="text-blue-600 font-semibold mt-3 inline-block hover:underline">
+              Register →
+            </Link>
           </div>
 
           {/* Card 3 */}
@@ -126,7 +143,9 @@ const Banner = () => {
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-2">
               Stay connected with latest volunteering events and social drives near you.
             </p>
-            <Link to="/posts" className="text-yellow-600 font-semibold mt-3 inline-block hover:underline">Join Now →</Link>
+            <Link to="/posts" className="text-yellow-600 font-semibold mt-3 inline-block hover:underline">
+              Join Now →
+            </Link>
           </div>
         </div>
       </section>

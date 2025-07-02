@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, {use} from "react";
 import { Link, NavLink } from "react-router";
 import ThemeToggle from "./ThemeToggle";
 import Swal from "sweetalert2";
@@ -33,90 +33,53 @@ const Navbar = () => {
       ? "text-orange-500 dark:text-orange-300 font-semibold underline"
       : "text-gray-700 dark:text-gray-300 hover:text-orange-400 dark:hover:text-orange-300 font-medium";
 
-  const links = (
+  
+  const publicLinks = (
     <>
-      <li>
-        <NavLink to="/" className={navLinkClass}>
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/posts" className={navLinkClass}>
-          All Volunteer Posts
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/blogs" className={navLinkClass}>
-          Blogs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/about" className={navLinkClass}>
-          About Us
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact" className={navLinkClass}>
-          Contact
-        </NavLink>
-      </li>
+      <li><NavLink to="/" className={navLinkClass}>Home</NavLink></li>
+      <li><NavLink to="/posts" className={navLinkClass}>All Volunteer Posts</NavLink></li>
+      <li><NavLink to="/blogs" className={navLinkClass}>Blogs</NavLink></li>
+      <li><NavLink to="/about" className={navLinkClass}>About Us</NavLink></li>
+      <li><NavLink to="/contact" className={navLinkClass}>Contact</NavLink></li>
+    </>
+  );
+
+  // Authenticated user routes
+  const privateLinks = (
+    <>
+      <li><NavLink to="/volunteer-posts" className={navLinkClass}>Add Volunteer Post</NavLink></li>
+      <li><NavLink to="/my-posts" className={navLinkClass}>Manage My Posts</NavLink></li>
     </>
   );
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-        {/* Logo & Mobile Dropdown */}
+        
+        {/* Logo + Mobile Dropdown */}
         <div className="flex items-center gap-2">
           <div className="dropdown lg:hidden">
-            <label tabIndex={0} className="btn btn-ghost">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+            <button tabIndex={0} className="btn btn-ghost">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-2 p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-52 z-50"
-            >
-              {links}
+            </button>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-2 p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-52 z-50">
+              {publicLinks}
+              {user && privateLinks}
               {user && (
-                <>
-                  <li>
-                    <NavLink to="/volunteer-posts" className={navLinkClass}>
-                      Add Volunteer Post
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/my-posts" className={navLinkClass}>
-                      Manage My Posts
-                    </NavLink>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleLogout}
-                      className="text-red-500 font-semibold flex items-center gap-2"
-                    >
-                      <FaSignOutAlt /> Logout
-                    </button>
-                  </li>
-                </>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-500 font-semibold flex items-center gap-2"
+                  >
+                    <FaSignOutAlt /> Logout
+                  </button>
+                </li>
               )}
             </ul>
           </div>
-          <Link
-            to="/"
-            className="text-2xl font-bold text-orange-600 dark:text-orange-400"
-          >
+          <Link to="/" className="text-2xl font-bold text-orange-600 dark:text-orange-400">
             Volunteer Hub
           </Link>
         </div>
@@ -124,32 +87,17 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-2">
-            {links}
-            {user && (
-              <>
-                <li>
-                  <NavLink to="/volunteer-posts" className={navLinkClass}>
-                    Add Volunteer Post
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/my-posts" className={navLinkClass}>
-                    Manage My Posts
-                  </NavLink>
-                </li>
-              </>
-            )}
+            {publicLinks}
+            {user && privateLinks}
           </ul>
         </div>
 
-        {/* Right Icons */}
+        {/* Right Section */}
         <div className="flex items-center gap-3">
           <ThemeToggle />
           {!user ? (
             <>
-              <NavLink to="/register" className={navLinkClass}>
-                Register
-              </NavLink>
+              <NavLink to="/register" className={navLinkClass}>Register</NavLink>
               <NavLink
                 to="/login"
                 className="bg-orange-500 hover:bg-orange-600 px-4 py-1 rounded text-white font-semibold"
@@ -172,30 +120,7 @@ const Navbar = () => {
                 </div>
               </label>
               <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-800 rounded-box w-48 z-50">
-                <li>
-                  <NavLink
-                    to="/volunteer-posts"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-orange-500 dark:text-orange-300 font-semibold"
-                        : "text-gray-700 dark:text-gray-200 hover:text-orange-400 dark:hover:text-orange-300 font-medium"
-                    }
-                  >
-                    Add Volunteer Post
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/my-posts"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-orange-500 dark:text-orange-300 font-semibold"
-                        : "text-gray-700 dark:text-gray-200 hover:text-orange-400 dark:hover:text-orange-300 font-medium"
-                    }
-                  >
-                    Manage My Posts
-                  </NavLink>
-                </li>
+                {privateLinks}
                 <li>
                   <button
                     onClick={handleLogout}
@@ -208,6 +133,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
       </div>
     </div>
   );

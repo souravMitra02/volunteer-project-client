@@ -5,7 +5,13 @@ const volunteers = [
   { id: 1, name: "Rafiq Hasan", hours: 130, role: "Community Outreach", img: "https://randomuser.me/api/portraits/men/32.jpg" },
   { id: 2, name: "Nusrat Jahan", hours: 110, role: "Fundraising Volunteer", img: "https://randomuser.me/api/portraits/women/44.jpg" },
   { id: 3, name: "Imran Hossain", hours: 95, role: "Event Coordinator", img: "https://randomuser.me/api/portraits/men/53.jpg" },
+  { id: 4, name: "Tahmina Akter", hours: 120, role: "Medical Support", img: "https://randomuser.me/api/portraits/women/65.jpg" },
+  { id: 5, name: "Samiul Islam", hours: 102, role: "Disaster Relief", img: "https://randomuser.me/api/portraits/men/74.jpg" },
+  { id: 6, name: "Fatema Begum", hours: 98, role: "Child Education", img: "https://randomuser.me/api/portraits/women/58.jpg" },
+  { id: 7, name: "Mahbub Rahman", hours: 140, role: "Logistics Coordinator", img: "https://randomuser.me/api/portraits/men/85.jpg" },
+  { id: 8, name: "Sharmin Nahar", hours: 105, role: "Mental Health Support", img: "https://randomuser.me/api/portraits/women/71.jpg" },
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -31,7 +37,7 @@ const TopVolunteers = () => {
       className="bg-gray-100 dark:bg-gray-900 py-20 px-4 transition-colors duration-300"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.5 }}  // 0.5 মানে: section এর অর্ধেক এলেই ট্রিগার হবে
+      viewport={{ once: false, amount: 0.5 }} 
       variants={containerVariants}
     >
       <div className="max-w-6xl mx-auto text-center">
@@ -50,7 +56,7 @@ const TopVolunteers = () => {
         </motion.p>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
           variants={containerVariants}
         >
           {volunteers.map(({ id, name, hours, role, img }) => (

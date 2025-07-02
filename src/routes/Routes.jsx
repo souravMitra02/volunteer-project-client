@@ -14,6 +14,8 @@ import MyPosts from "../pages/MyPosts";
 import VolunteerDetails from "../pages/VolunteerDetails";
 import BeVolunteerPage from "../pages/BeVolunteerModal";
 import UpdatePost from "../pages/UpdatePost";
+import Contact from "../pages/Contact";
+import About from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,18 @@ export const router = createBrowserRouter([
         element: <AllVolunteerPosts></AllVolunteerPosts>
       },
    
+      {
+        path: 'contact',
+        element : <Contact></Contact>
+      },
+      {
+        path: 'contact',
+        element : <Contact></Contact>
+      },
+      {
+        path: 'about',
+        element : <About></About>
+      },
       {
         path: '/volunteer-posts',
         element: (
