@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   return (
     <div>
-      <header>
+  <header>
         <Navbar></Navbar>
       </header>
       <main className="min-h-[80vh]">
@@ -15,7 +15,7 @@ const MainLayout = () => {
       <footer>
         <Footer></Footer>
       </footer>
-    </div>
+</div>
   );
 };
 

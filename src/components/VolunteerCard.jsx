@@ -1,14 +1,13 @@
 import { Link } from 'react-router';
 import { Heart } from "lucide-react";
 
-// Define tag colors
 const tagColors = {
-  Teamwork: "bg-green-100 text-green-800",
-  Communication: "bg-blue-100 text-blue-800",
-  Leadership: "bg-yellow-100 text-yellow-800",
-  Urgent: "bg-red-100 text-red-800",
-  Fundraising: "bg-purple-100 text-purple-800",
-  "Medical Aid": "bg-orange-100 text-orange-800",
+  Teamwork: "bg-green-600/20 text-green-400",
+  Communication: "bg-blue-600/20 text-blue-400",
+  Leadership: "bg-yellow-600/20 text-yellow-400",
+  Urgent: "bg-red-600/20 text-red-400",
+  Fundraising: "bg-purple-600/20 text-purple-400",
+  "Medical Aid": "bg-orange-600/20 text-orange-400",
 };
 
 const VolunteerCard = ({ post }) => {
@@ -23,23 +22,23 @@ const VolunteerCard = ({ post }) => {
   } = post;
 
   return (
-    <div className="card bg-white dark:bg-gray-800 border rounded-lg shadow hover:shadow-xl flex flex-col transition-all duration-300">
-      {/* Image + Status */}
+    <div className="group card bg-[#0f172a] text-white border border-gray-700 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden">
+
+      {/* Image Section */}
       <div className="relative">
         <img
-  src={thumbnail}
-  alt={postTitle}
-  className="w-full aspect-[16/9] object-cover object-center rounded-t-lg"
-/>
-        {/* Status Badge */}
+          src={thumbnail}
+          alt={postTitle}
+          className="w-full aspect-[16/9] object-cover object-center rounded-t-2xl"
+        />
+        {/* Gradient Status Badge */}
         <span
-          className={`absolute top-2 left-2 badge text-white text-xs px-2 py-1 rounded 
-          ${
+          className={`absolute top-3 left-3 text-xs font-semibold px-2 py-1 rounded-full bg-gradient-to-r ${
             status === "Urgent"
-              ? "bg-red-600"
+              ? "from-red-500 to-orange-500"
               : status === "Closed"
-              ? "bg-gray-500"
-              : "bg-green-600"
+              ? "from-gray-500 to-gray-700"
+              : "from-green-500 to-emerald-500"
           }`}
         >
           {status}
@@ -49,23 +48,23 @@ const VolunteerCard = ({ post }) => {
       {/* Content */}
       <div className="p-4 flex flex-col justify-between h-full">
         <div>
-          <h3 className="text-xl font-semibold mb-1 text-gray-800 dark:text-white">
+          <h3 className="text-lg font-bold mb-1 group-hover:text-blue-400 transition">
             {postTitle}
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-300 mb-1">
+          <p className="text-xs text-gray-400 mb-1">
             Category: {category}
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">
+          <p className="text-xs text-gray-500 mb-2">
             Deadline: {new Date(deadline).toLocaleDateString()}
           </p>
 
-          {/* Skill Tags with Color */}
-          <div className="flex flex-wrap gap-1 mt-2">
+          {/* Skills */}
+          <div className="flex flex-wrap gap-1 mt-3">
             {skills.map((skill, i) => (
               <span
                 key={i}
-                className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                  tagColors[skill] || "bg-gray-100 text-gray-700"
+                className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                  tagColors[skill] || "bg-gray-700 text-gray-300"
                 }`}
               >
                 #{skill}
@@ -77,7 +76,7 @@ const VolunteerCard = ({ post }) => {
         {/* View Button */}
         <Link
           to={`/volunteer-posts/${_id}`}
-          className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-4 rounded text-sm text-center"
+          className="mt-4 inline-block bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition text-white py-2 px-4 rounded-lg text-sm text-center font-medium shadow-md hover:shadow-lg"
         >
           View Details
         </Link>
