@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
-import ThemeToggle from "./ThemeToggle";
+import { FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { FaSignOutAlt } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logoutUser()
@@ -14,10 +15,10 @@ const Navbar = () => {
         Swal.fire({
           icon: "success",
           title: "Logged out!",
-          text: "You have successfully logged out.",
           timer: 2000,
           showConfirmButton: false,
         });
+        setMenuOpen(false);
       })
       .catch((err) => {
         Swal.fire({
@@ -51,15 +52,27 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/40 dark:bg-[#0f172a]/30 border-b border-gray-300 dark:border-gray-700 shadow-sm">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-white/20 dark:bg-[#0f172a]/50 backdrop-blur-md border-b border-gray-300 dark:border-gray-700 shadow-sm rounded-full mt-2">
       <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+        
+        {/* Logo + Menu Button */}
+        <div className="flex items-center gap-3">
+          <button
+            className="lg:hidden text-2xl text-gray-800 dark:text-white"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
 
-        {/* Left: Logo */}
-        <Link to="/" className="text-xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-          Volunteer Hub
-        </Link>
+          <Link
+            to="/"
+            className="text-xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent"
+          >
+            Volunteer Hub
+          </Link>
+        </div>
 
-        {/* Center: Nav Links */}
+        {/* Desktop Menu */}
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal gap-4">
             {publicLinks}
@@ -67,26 +80,19 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Right: User & Theme */}
+        {/* Theme Toggle + Auth */}
         <div className="flex items-center gap-3">
           <ThemeToggle />
-
           {!user ? (
-            <>
-              <NavLink to="/register" className={navLinkClass}>Register</NavLink>
-              <NavLink
-                to="/login"
-                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 text-white px-4 py-1.5 rounded-full font-semibold shadow-md"
-              >
-                Login
-              </NavLink>
-            </>
+            <NavLink
+              to="/login"
+              className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 text-white px-4 py-1.5 rounded-full font-semibold shadow-md"
+            >
+              Login
+            </NavLink>
           ) : (
             <div className="dropdown dropdown-end hidden lg:block">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost btn-circle avatar"
-              >
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full ring ring-orange-400 ring-offset-2">
                   <img
                     src={user.photoURL || "https://i.ibb.co/Yb3gfHm/avatar.png"}
@@ -94,7 +100,7 @@ const Navbar = () => {
                   />
                 </div>
               </label>
-              <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white dark:bg-[#0f172a] rounded-box w-48">
+              <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white dark:bg-[#0f172a] text-gray-800 dark:text-gray-200 rounded-box w-48">
                 {privateLinks}
                 <li>
                   <button
@@ -109,6 +115,24 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="lg:hidden bg-white dark:bg-[#0f172a] py-4 px-6 text-gray-800 dark:text-white">
+          <ul className="flex flex-col space-y-3">
+            {publicLinks}
+            {user && privateLinks}
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-semibold mt-4 text-white"
+              >
+                <FaSignOutAlt className="inline mr-2" /> Logout
+              </button>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

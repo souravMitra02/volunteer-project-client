@@ -28,8 +28,8 @@ const Banner = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <div className="mt-20 dark:bg-[#0f172a] text-white py-10 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+      <div className="mt-10 md:mt-10 lg:mt-20 dark:bg-[#0f172a] text-white py-10 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           
           {/* Left Text Section */}
           <div className="flex-1 text-center md:text-left">
