@@ -1,13 +1,12 @@
 import { Link } from 'react-router';
-import { Heart } from "lucide-react";
 
 const tagColors = {
-  Teamwork: "bg-green-600/20 text-green-400",
-  Communication: "bg-blue-600/20 text-blue-400",
-  Leadership: "bg-yellow-600/20 text-yellow-400",
-  Urgent: "bg-red-600/20 text-red-400",
-  Fundraising: "bg-purple-600/20 text-purple-400",
-  "Medical Aid": "bg-orange-600/20 text-orange-400",
+  Teamwork: "bg-green-100 text-green-800",
+  Communication: "bg-blue-100 text-blue-800",
+  Leadership: "bg-yellow-100 text-yellow-800",
+  Urgent: "bg-red-100 text-red-800",
+  Fundraising: "bg-purple-100 text-purple-800",
+  "Medical Aid": "bg-orange-100 text-orange-800",
 };
 
 const VolunteerCard = ({ post }) => {
@@ -22,49 +21,52 @@ const VolunteerCard = ({ post }) => {
   } = post;
 
   return (
-    <div className="group card bg-[#0f172a] text-white border border-gray-700 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden">
-
-      {/* Image Section */}
-      <div className="relative">
+    <div className="max-w-sm mx-auto rounded-xl bg-[#1e293b] border border-gray-700 shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+      
+      {/* Image */}
+      <div className="relative overflow-hidden rounded-t-xl">
         <img
           src={thumbnail}
           alt={postTitle}
-          className="w-full aspect-[16/9] object-cover object-center rounded-t-2xl"
+          className="w-full h-44 object-cover object-center transition-transform duration-500 hover:scale-105"
+          loading="lazy"
         />
-        {/* Gradient Status Badge */}
+        {/* Status Badge */}
         <span
-          className={`absolute top-3 left-3 text-xs font-semibold px-2 py-1 rounded-full bg-gradient-to-r ${
-            status === "Urgent"
-              ? "from-red-500 to-orange-500"
-              : status === "Closed"
-              ? "from-gray-500 to-gray-700"
-              : "from-green-500 to-emerald-500"
+          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold select-none ${
+            status === "Urgent" ? "bg-red-200 text-red-800" :
+            status === "Closed" ? "bg-gray-400 text-gray-900" :
+            "bg-green-200 text-green-800"
           }`}
         >
-          {status}
+          {status.toUpperCase()}
         </span>
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col justify-between h-full">
+      <div className="p-5 text-gray-200 flex flex-col justify-between h-56 bg-[#1e293b]">
         <div>
-          <h3 className="text-lg font-bold mb-1 group-hover:text-blue-400 transition">
+          <h3 className="text-lg font-bold mb-2 truncate hover:text-indigo-400 transition-colors duration-300">
             {postTitle}
           </h3>
-          <p className="text-xs text-gray-400 mb-1">
+          <p className="text-sm text-gray-400 mb-1 truncate">
             Category: {category}
           </p>
-          <p className="text-xs text-gray-500 mb-2">
-            Deadline: {new Date(deadline).toLocaleDateString()}
+          <p className="text-xs text-gray-500 mb-4">
+            Deadline: {new Date(deadline).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
           </p>
 
-          {/* Skills */}
-          <div className="flex flex-wrap gap-1 mt-3">
+          {/* Skills Tags */}
+          <div className="flex flex-wrap gap-2">
             {skills.map((skill, i) => (
               <span
                 key={i}
-                className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
-                  tagColors[skill] || "bg-gray-700 text-gray-300"
+                className={`text-xs font-medium px-3 py-1 rounded-full select-none ${
+                  tagColors[skill] || "bg-gray-300 text-gray-700"
                 }`}
               >
                 #{skill}
@@ -73,10 +75,11 @@ const VolunteerCard = ({ post }) => {
           </div>
         </div>
 
-        {/* View Button */}
+        {/* View Details Button */}
         <Link
           to={`/volunteer-posts/${_id}`}
-          className="mt-4 inline-block bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition text-white py-2 px-4 rounded-lg text-sm text-center font-medium shadow-md hover:shadow-lg"
+          className="mt-6 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md text-center transition duration-300"
+          aria-label={`View details for ${postTitle}`}
         >
           View Details
         </Link>

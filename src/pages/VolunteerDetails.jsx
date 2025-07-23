@@ -15,50 +15,78 @@ const VolunteerDetails = () => {
 
   if (!post)
     return (
-      <div className="flex justify-center items-center py-10">
+      <div className="flex justify-center items-center min-h-screen">
         <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
       </div>
     );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <img
-        src={post.thumbnail}
-        alt={post.postTitle}
-        className="w-full h-64 object-cover rounded mb-6"
-      />
-      <h2 className="text-3xl font-bold mb-2">{post.postTitle}</h2>
-      <p>
-        <strong>Category:</strong> {post.category}
-      </p>
-      <p>
-        <strong>Deadline:</strong>{" "}
-        {new Date(post.deadline).toLocaleDateString()}
-      </p>
-      <p>
-        <strong>Location:</strong> {post.location}
-      </p>
-      <p>
-        <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
-      </p>
-      <p>
-        <strong>Organizer:</strong> {post.organizerName} ({post.organizerEmail})
-      </p>
-      <p className="mt-4 mb-6">{post.description}</p>
+    <div className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 py-12 mt-10">
+      {/* Outer Card */}
+      <div className=" shadow rounded-2xl p-5 md:p-10 w-full max-w-6xl">
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Image Card */}
+          <div className=" rounded-xl overflow-hidden p-2 flex items-center justify-center">
+            <img
+              src={post.thumbnail}
+              alt={post.postTitle}
+              className="w-full h-72 md:h-[400px] object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+            />
+          </div>
 
-      {post.volunteersNeeded === 0 ? (
-        <p className="text-red-600 font-semibold">
-          Volunteers already fulfilled! You cannot join this event.
-        </p>
-      ) : (
-        <button
-          onClick={() => setShowModal(true)}
-          className="btn bg-orange-500 text-white hover:bg-orange-600"
-        >
-          Be a Volunteer
-        </button>
-      )}
+          {/* Details Card */}
+          <div className="flex flex-col justify-between h-full">
+            <div className="space-y-5">
+              <h1 className="text-2xl md:text-3xl font-extrabold text-indigo-700  md:text-left">
+                {post.postTitle}
+              </h1>
+              <p className="text-gray-700 leading-relaxed md:text-left">
+                {post.description}
+              </p>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+                <p>
+                  <span className="font-semibold text-indigo-600"> Category:</span> {post.category}
+                </p>
+                <p>
+                  <span className="font-semibold text-indigo-600"> Location:</span> {post.location}
+                </p>
+                <p>
+                  <span className="font-semibold text-indigo-600"> Deadline:</span>{" "}
+                  {new Date(post.deadline).toLocaleDateString()}
+                </p>
+                <p>
+                  <span className="font-semibold text-indigo-600"> Volunteers Needed:</span>{" "}
+                  {post.volunteersNeeded}
+                </p>
+              </div>
+
+              <p className=" md:text-left">
+                <span className="font-semibold text-indigo-600"> Organizer:</span>{" "}
+                {post.organizerName} ({post.organizerEmail})
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-6">
+              {post.volunteersNeeded === 0 ? (
+                <p className="text-red-600 font-semibold bg-red-100 px-4 py-2 rounded-lg text-center">
+                   Volunteers already fulfilled! You cannot join this event.
+                </p>
+              ) : (
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition text-white font-bold px-6 py-3 rounded-xl shadow-lg"
+                >
+                   Be a Volunteer
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal */}
       {showModal && (
         <BeVolunteerModal post={post} closeModal={() => setShowModal(false)} />
       )}

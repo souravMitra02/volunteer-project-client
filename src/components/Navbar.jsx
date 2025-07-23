@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext/AuthContext";
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
-
+const closeMenu =()=> setMenuOpen(false);
   const handleLogout = () => {
     logoutUser()
       .then(() => {
@@ -31,16 +31,17 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-orange-500 dark:text-orange-400 font-semibold underline"
-      : "text-gray-800 dark:text-gray-300 hover:text-orange-500 font-medium";
+      ? "text-orange-500 font-semibold underline"
+      : "  hover:text-orange-500 font-medium";
+  
 
   const publicLinks = (
     <>
-      <li><NavLink to="/" className={navLinkClass}>Home</NavLink></li>
-      <li><NavLink to="/posts" className={navLinkClass}>All Posts</NavLink></li>
-      <li><NavLink to="/reports" className={navLinkClass}>Reports</NavLink></li>
-      <li><NavLink to="/about" className={navLinkClass}>About</NavLink></li>
-      <li><NavLink to="/contact" className={navLinkClass}>Contact</NavLink></li>
+      <li><NavLink to="/" className={navLinkClass} onClick={closeMenu}>Home</NavLink></li>
+      <li><NavLink to="/posts" className={navLinkClass} onClick={closeMenu}>All Posts</NavLink></li>
+      <li><NavLink to="/reports" className={navLinkClass} onClick={closeMenu}>Reports</NavLink></li>
+      <li><NavLink to="/about" className={navLinkClass} onClick={closeMenu}>About</NavLink></li>
+      <li><NavLink to="/contact" className={navLinkClass} onClick={closeMenu}>Contact</NavLink></li>
     </>
   );
 
@@ -52,13 +53,13 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/20 dark:bg-[#0f172a]/50 backdrop-blur-md border-b border-gray-300 dark:border-gray-700 shadow-sm rounded-full mt-2">
-      <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-        
-        {/* Logo + Menu Button */}
+    <div className="fixed top-0 left-0 right-0 z-50 bg-white/20  backdrop-blur-md border-b border-gray-300  shadow-sm rounded-full mt-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+
+        {/* Logo & Hamburger */}
         <div className="flex items-center gap-3">
           <button
-            className="lg:hidden text-2xl text-gray-800 dark:text-white"
+            className="lg:hidden text-2xl text-gray-800 "
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
@@ -100,7 +101,7 @@ const Navbar = () => {
                   />
                 </div>
               </label>
-              <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white dark:bg-[#0f172a] text-gray-800 dark:text-gray-200 rounded-box w-48">
+              <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white  text-gray-800  rounded-box w-48">
                 {privateLinks}
                 <li>
                   <button
@@ -118,7 +119,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-white dark:bg-[#0f172a] py-4 px-6 text-gray-800 dark:text-white">
+        <div className="lg:hidden bg-white  py-4 px-6 text-gray-800 dark:text-white">
           <ul className="flex flex-col space-y-3">
             {publicLinks}
             {user && privateLinks}
