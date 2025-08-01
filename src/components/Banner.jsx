@@ -38,9 +38,9 @@ const Banner = () => {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center md:text-left"
           >
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 ">
+            <h1 className="text-4xl mt-5 lg:mt-0 md:mt-0 md:text-5xl font-extrabold leading-tight mb-4 ">
   Empower Communities<br />
-  Through <span className="text-orange-500">Volunteering</span>
+  Through <span className="text-orange-600">Volunteering</span>
 </h1>
 
             <p className="text-lg  mb-6 max-w-md mx-auto md:mx-0">

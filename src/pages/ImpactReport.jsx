@@ -44,10 +44,10 @@ const COLORS = [
 
 const ImpactReport = () => {
   return (
-    <section className="bg-gradient-to-b from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen py-24 px-6 transition-colors duration-500 mt-10 mb-10">
+    <section className="  min-h-screen py-24 px-6 transition-colors duration-500 mt-10 mb-10">
       <div className="max-w-7xl mx-auto text-center">
         <motion.h2
-          className="text-5xl font-extrabold text-indigo-900 dark:text-indigo-300 mb-6 tracking-tight drop-shadow-md"
+          className="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md text-orange-600"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -56,7 +56,7 @@ const ImpactReport = () => {
         </motion.h2>
 
         <motion.p
-          className="text-lg text-indigo-700 dark:text-indigo-200 max-w-3xl mx-auto mb-16 leading-relaxed"
+          className="text-lg  max-w-3xl mx-auto mb-16 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.7 }}
@@ -114,7 +114,7 @@ const ImpactReport = () => {
           </div>
 
           {/* Bar Chart */}
-          <div className="w-full max-w-4xl h-80 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 flex items-center justify-center">
+          <div className="w-full max-w-4xl h-80 bg-white  rounded-3xl shadow-2xl p-8 flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={data}
@@ -177,13 +177,13 @@ const ImpactReport = () => {
         </motion.div>
 
         <motion.div
-          className="mt-20 max-w-4xl mx-auto text-left text-indigo-900 dark:text-indigo-200"
+          className="mt-20 max-w-4xl mx-auto text-left  "
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-3xl font-semibold mb-6 tracking-wide">
+          <h3 className="text-3xl font-semibold mb-6 tracking-wide text-orange-600">
             Summary Highlights
           </h3>
           <ul className="list-disc list-inside space-y-3 text-lg leading-relaxed">

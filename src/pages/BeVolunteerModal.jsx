@@ -45,8 +45,8 @@ const BeVolunteerModal = ({ post, closeModal }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-4">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 relative overflow-y-auto max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-40 px-4 ">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 relative overflow-y-auto max-h-[90vh] ">
         {/* Close button */}
         <button
           onClick={closeModal}
@@ -55,7 +55,7 @@ const BeVolunteerModal = ({ post, closeModal }) => {
           ✕
         </button>
 
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-400">
           Be a Volunteer
         </h2>
 
@@ -130,7 +130,7 @@ const BeVolunteerModal = ({ post, closeModal }) => {
 
           <button
             type="submit"
-            className="btn btn-success w-full text-white font-semibold hover:bg-green-700 transition"
+            className="btn btn-success w-full  font-semibold hover:bg-green-700 transition"
           >
             Request
           </button>

@@ -1,10 +1,11 @@
 import React, { use, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import { Helmet } from "react-helmet";
-import { FaRegEye } from "react-icons/fa6";
-import { FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { motion } from "framer-motion";
+
 const Login = () => {
   const { loginUser, googleLogin } = use(AuthContext);
   const navigate = useNavigate();
@@ -56,24 +57,30 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 ">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center  px-4">
       <Helmet>
         <title>Login | Volunteer Hub</title>
       </Helmet>
 
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8 lg:m-40 mt-20">
-        <h2 className="text-3xl font-extrabold text-center  mb-6">
+      {/* Login Form */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-md bg-white/10 backdrop-blur-md border-2 border-gray-200 shadow-3xl shadow-gray-500 rounded-2xl p-8 md:mt-10 lg:mt-40 "
+      >
+        <h2 className="text-3xl font-extrabold text-center mb-6 ">
           Login to Your Account
         </h2>
 
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6 ">
           {/* Email */}
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium ">Email Address</label>
+            <label className="text-sm font-medium">Email Address</label>
             <input
               type="email"
               name="email"
-              className="w-full px-4 py-2 rounded-xl bg-white/10  border  placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
               placeholder="example@email.com"
               required
             />
@@ -81,49 +88,49 @@ const Login = () => {
 
           {/* Password */}
           <div className="flex flex-col gap-1 relative">
-            <label className="text-sm font-medium ">Password</label>
+            <label className="text-sm font-medium">Password</label>
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              className="w-full px-4 py-2 rounded-xl bg-white/10  border  placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
               placeholder="Enter your password"
               required
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-9 text-sm  cursor-pointer"
+              className="absolute right-4 top-9 text-lg cursor-pointer "
             >
-              {showPassword ?   <FaRegEye /> :<FaRegEyeSlash />}
+              {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
           </div>
 
-          {/* Forgot password */}
           <div className="text-right">
             <span className="text-sm text-blue-400 hover:underline cursor-pointer">
               Forgot password?
             </span>
           </div>
 
-          {/* Login button */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             type="submit"
-            className="w-full py-2 rounded-xl bg-blue-500 hover:bg-blue-600  font-medium transition duration-300 shadow-md hover:shadow-lg hover:cursor-pointer"
+            className="w-full py-2 rounded-xl bg-blue-500 hover:bg-blue-600 font-semibold transition duration-300 shadow-md hover:shadow-lg"
           >
             Login
-          </button>
+          </motion.button>
 
           {/* Divider */}
-          <div className="flex items-center gap-2 my-3">
+          <div className="flex items-center gap-2 my-4">
             <hr className="flex-grow border-gray-500" />
-            <span className="text-sm ">or</span>
+            <span className="text-sm ">OR</span>
             <hr className="flex-grow border-gray-500" />
           </div>
 
-          {/* Google Login Button */}
-          <button
+          {/* Google Login */}
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             onClick={handleGoogleLogin}
             type="button"
-            className="w-full py-2 flex items-center justify-center gap-2 rounded-xl hover:cursor-pointer  hover:bg-gray-200 font-medium border transition-all"
+            className="w-full py-2 flex items-center justify-center gap-2 rounded-xl hover:cursor-pointer hover:bg-gray-200 font-medium border transition-all bg-white text-black"
           >
             <svg
               width="20"
@@ -149,20 +156,20 @@ const Login = () => {
               />
             </svg>
             Login with Google
-          </button>
-
-          {/* Register link */}
-          <p className="text-sm  text-center mt-4">
-            Don’t have an account?{' '}
-            <Link
-              to="/register"
-              className="text-blue-400 hover:underline font-medium"
-            >
-              Register
-            </Link>
-          </p>
+          </motion.button>
+          <div className="text-center mt-4">
+  <span className="text-sm ">
+    Don&apos;t have an account?{" "}
+    <span
+      onClick={() => navigate("/register")}
+      className="text-blue-400 font-semibold hover:underline cursor-pointer"
+    >
+      Register
+    </span>
+  </span>
+</div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

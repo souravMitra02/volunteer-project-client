@@ -21,9 +21,9 @@ const VolunteerDetails = () => {
     );
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 py-12 mt-10">
+    <div className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 py-12 mt-20 ">
       {/* Outer Card */}
-      <div className=" shadow rounded-2xl p-5 md:p-10 w-full max-w-6xl">
+      <div className=" shadow rounded-2xl p-5 md:p-10 w-full max-w-6xl border-2 border-gray-100">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Image Card */}
           <div className=" rounded-xl overflow-hidden p-2 flex items-center justify-center">
@@ -35,16 +35,16 @@ const VolunteerDetails = () => {
           </div>
 
           {/* Details Card */}
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between items-center h-full">
             <div className="space-y-5">
-              <h1 className="text-2xl md:text-3xl font-extrabold text-indigo-700  md:text-left">
+              <h1 className="text-2xl md:text-3xl font-extrabold text-indigo-700  text-center">
                 {post.postTitle}
               </h1>
-              <p className="text-gray-700 leading-relaxed md:text-left">
+              <p className=" leading-relaxed md:text-left">
                 {post.description}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm ">
                 <p>
                   <span className="font-semibold text-indigo-600"> Category:</span> {post.category}
                 </p>
@@ -76,7 +76,7 @@ const VolunteerDetails = () => {
               ) : (
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition text-white font-bold px-6 py-3 rounded-xl shadow-lg"
+                  className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition  font-bold px-6 py-3 rounded-xl shadow-lg"
                 >
                    Be a Volunteer
                 </button>

@@ -44,7 +44,7 @@ const AddVolunteerPost = () => {
 
   return (
     <section className="max-w-4xl mx-auto px-4 md:px-8 py-12 mt-20">
-      <div className="shadow-md rounded-xl p-8 bg-white dark:bg-[#0f172a] text-gray-800 dark:text-white">
+      <div className="shadow-md rounded-xl p-8  ">
         <h2 className="text-3xl font-bold mb-6 text-center">Add Volunteer Need Post</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
