@@ -51,9 +51,9 @@ const AllVolunteerPosts = () => {
             placeholder="🔍 Search post title"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full focus:outline-orange-600"
           />
-          <button onClick={handleSearch} className="btn btn-primary">Search</button>
+          <button onClick={handleSearch} className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded-xl shadow hover:shadow-lg transition-all duration-300">Search</button>
         </div>
         <button
           onClick={() => setIsTableLayout((prev) => !prev)}

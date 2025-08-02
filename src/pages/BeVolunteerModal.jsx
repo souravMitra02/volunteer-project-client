@@ -130,7 +130,7 @@ const BeVolunteerModal = ({ post, closeModal }) => {
 
           <button
             type="submit"
-            className="btn btn-success w-full  font-semibold hover:bg-green-700 transition"
+            className="bbg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded-xl shadow hover:shadow-lg transition-all duration-300"
           >
             Request
           </button>
