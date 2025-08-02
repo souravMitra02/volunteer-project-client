@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const volunteers = [
   { id: 1, name: "Rafiq Hasan", hours: 130, role: "Community Outreach", img: "https://randomuser.me/api/portraits/men/32.jpg" },
@@ -12,72 +12,58 @@ const volunteers = [
   { id: 8, name: "Sharmin Nahar", hours: 105, role: "Mental Health Support", img: "https://randomuser.me/api/portraits/women/71.jpg" },
 ];
 
-
-const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
+const fadeVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: {
-      staggerChildren: 0.3,
-      duration: 0.7,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.4 } },
 };
 
 const TopVolunteers = () => {
   return (
     <motion.section
-      className=" py-20 px-4 transition-colors duration-300"
+      className="py-16 px-4 sm:px-6 md:px-10 lg:px-20 transition-colors duration-300"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.5 }} 
-      variants={containerVariants}
+      viewport={{ once: false, amount: 0.5 }}
     >
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-4xl font-bold mb-4 text-orange-600 "
-          variants={cardVariants}
-        >
+      <div className="max-w-7xl mx-auto text-center">
+        <motion.h2 className="text-3xl sm:text-4xl font-bold mb-4 text-orange-600">
           Top Volunteers of the Month
         </motion.h2>
 
-        <motion.p
-          className=" mb-10 max-w-xl mx-auto text-lg"
-          variants={cardVariants}
-        >
+        <motion.p className="mb-10 max-w-2xl mx-auto text-base sm:text-lg">
           Meet the heroes who went above and beyond to make a difference this month.
         </motion.p>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
-          variants={containerVariants}
-        >
-          {volunteers.map(({ id, name, hours, role, img }) => (
-            <motion.div
-              key={id}
-              className="bg-white/20 backdrop-blur-md border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1 transition-all duration-300 transform max-w-sm w-full mx-auto p-5"
-              variants={cardVariants}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={img}
-                alt={name}
-                className="w-24 h-24 mx-auto rounded-full mb-4 object-cover ring-4 ring-orange-600"
-              />
-              <h3 className="text-xl font-semibold ">{name}</h3>
-              <p className="text-indigo-500 dark:text-green-400 font-medium">
-                {hours}+ Hours Contributed
-              </p>
-              <p className="text-sm  mt-2">{role}</p>
-            </motion.div>
-          ))}
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+          <AnimatePresence>
+            {volunteers.map(({ id, name, hours, role, img }) => (
+              <motion.div
+                key={id}
+                className="bg-white/20 backdrop-blur-md border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1 transition-all duration-300 transform w-full p-5"
+                variants={fadeVariant}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                whileHover={{ scale: 1.05 }}
+              >
+                <img
+                  src={img}
+                  alt={name}
+                  className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full mb-4 object-cover ring-4 ring-orange-600"
+                />
+                <h3 className="text-lg sm:text-xl font-semibold">{name}</h3>
+                <p className="text-indigo-500 dark:text-green-400 font-medium">
+                  {hours}+ Hours Contributed
+                </p>
+                <p className="text-sm mt-2">{role}</p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </motion.section>
