@@ -89,7 +89,7 @@ const Register = () => {
             <input
               type="text"
               name="name"
-              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
               placeholder="Your name"
               required
             />
@@ -100,7 +100,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
               placeholder="example@email.com"
               required
             />
@@ -111,7 +111,7 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
               placeholder="Enter your password"
               required
             />
@@ -125,7 +125,7 @@ const Register = () => {
             <input
               type="text"
               name="photoURL"
-              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-4 py-2 rounded-xl bg-white/10 border placeholder-gray-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
               placeholder="https://your-photo-link.com"
             />
           </div>
@@ -133,7 +133,7 @@ const Register = () => {
           <motion.button
             whileTap={{ scale: 0.97 }}
             type="submit"
-            className="w-full py-2 rounded-xl bg-blue-500 hover:bg-blue-600 font-semibold transition duration-300 shadow-md hover:shadow-lg"
+            className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded-xl shadow hover:shadow-lg transition-all duration-300"
           >
             Register
           </motion.button>
@@ -177,11 +177,11 @@ const Register = () => {
           </motion.button>
 
           <div className="text-center mt-4">
-            <span className="text-sm text-gray-300">
+            <span className="text-sm ">
               Already have an account?{" "}
               <span
                 onClick={() => navigate("/login")}
-                className="text-blue-400 font-semibold hover:underline cursor-pointer"
+                className="text-orange-600 font-semibold hover:underline cursor-pointer"
               >
                 Login
               </span>
