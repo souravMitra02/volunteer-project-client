@@ -52,8 +52,10 @@ const UpdatePost = () => {
   if (!postData) return <p>Loading post data...</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Update Your Post</h2>
+    <section  data-aos="fade-up"
+      className="max-w-4xl mx-auto px-4 md:px-8 py-12 mt-10">
+      <div className="shadow-2xl rounded-2xl p-10 border-2 border-white/40 dark:border-orange-500">
+      <h2 className="text-3xl text-orange-600 font-bold mb-4 text-center">Update Your Post</h2>
       <form onSubmit={handleUpdate} className="space-y-4">
         <input
           name="thumbnail"
@@ -83,11 +85,11 @@ const UpdatePost = () => {
           className="w-full border p-2 rounded"
           required
         >
-          <option value="">Select Category</option>
-          <option value="healthcare">Healthcare</option>
-          <option value="education">Education</option>
-          <option value="social service">Social Service</option>
-          <option value="animal welfare">Animal Welfare</option>
+          <option className="text-black" value="">Select Category</option>
+          <option className="text-black" value="healthcare">Healthcare</option>
+          <option className="text-black" value="education">Education</option>
+          <option className="text-black" value="social service">Social Service</option>
+          <option className="text-black" value="animal welfare">Animal Welfare</option>
         </select>
 
         <input
@@ -120,23 +122,24 @@ const UpdatePost = () => {
           <input
             value={user.displayName}
             readOnly
-            className="w-1/2 border p-2 rounded bg-gray-100"
+            className="w-1/2 border p-2 rounded "
           />
           <input
             value={user.email}
             readOnly
-            className="w-1/2 border p-2 rounded bg-gray-100"
+            className="w-1/2 border p-2 rounded "
           />
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full"
+          className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded-xl shadow hover:shadow-lg transition-all duration-300"
         >
           Update Post
         </button>
       </form>
     </div>
+    </section>
   );
 };
 

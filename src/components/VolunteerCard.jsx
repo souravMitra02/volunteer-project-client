@@ -47,12 +47,12 @@ const VolunteerCard = ({ post }) => {
       {/* Content Section */}
       <div className="p-5 flex flex-col justify-between h-[14rem]">
         <div>
-          <h3 className="text-3xl  font-bold mb-1 truncate hover:text-indigo-400 transition-colors duration-300">
+          <h3 className="text-xl  font-bold mb-1 truncate hover:text-orange-600 transition-colors duration-300">
             {postTitle}
           </h3>
-          <p className="text-md  mb-2"><span className="text-indigo-700 font-bold">Category:</span> {category}</p>
+          <p className="text-md  mb-2"><span className="text-orange-600 font-bold">Category:</span> {category}</p>
           <p className="text-md  mb-4">
-            <span className="text-indigo-700 font-bold">Deadline:</span>{" "}
+            <span className="text-orange-600 font-bold">Deadline:</span>{" "}
             {new Date(deadline).toLocaleDateString(undefined, {
               year: "numeric",
               month: "short",

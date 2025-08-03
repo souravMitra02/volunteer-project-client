@@ -34,12 +34,12 @@ const VolunteerNeedsNow = () => {
       </h2>
 
       {posts.length === 0 ? (
-        <p className="text-center text-gray-600">
+        <p className="text-center ">
           No upcoming volunteer posts found.
         </p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {posts.slice(0, 8).map((post) => (
               <VolunteerCard key={post._id} post={post} />
             ))}
@@ -47,7 +47,7 @@ const VolunteerNeedsNow = () => {
 
           <div className="text-center mt-8">
             <Link
-              to="/volunteer-posts"
+              to="/posts"
               className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded-xl shadow hover:shadow-lg transition-all duration-300"
             >
               See All

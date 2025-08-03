@@ -153,7 +153,7 @@ const MyPosts = () => {
 
             {/* Table layout for medium and larger devices */}
             <div className="overflow-x-auto rounded-lg shadow-lg hidden md:block">
-              <table className="min-w-full border border-gray-300 dark:border-gray-700">
+              <table className="min-w-full border border-gray-300 ">
                 <thead className=" text-sm font-semibold">
                   <tr>
                     <th className="border px-4 py-3 text-center">Title</th>
@@ -169,7 +169,7 @@ const MyPosts = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                      className="transition"
                     >
                       <td className="border border-gray-300 dark:border-gray-700 px-4 py-3 text-center dark:text-gray-100 whitespace-nowrap">
                         {post.postTitle}
