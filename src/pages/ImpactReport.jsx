@@ -13,6 +13,7 @@ import {
   Cell,
 } from "recharts";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const data = [
   { name: "Water", volunteers: 80, impact: 2400 },
@@ -45,6 +46,9 @@ const COLORS = [
 const ImpactReport = () => {
   return (
     <section className="  min-h-screen py-24 px-6 transition-colors duration-500 mt-10 mb-10">
+      <Helmet>
+              <title>Report | Volunteer Hub</title>
+            </Helmet>
       <div className="max-w-7xl mx-auto text-center">
         <motion.h2
           className="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md text-orange-600"

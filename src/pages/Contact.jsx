@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,11 @@ const Contact = () => {
   };
 
   return (
+    
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mt-10 mb-10">
+      <Helmet>
+              <title>Contact Us | Volunteer Hub</title>
+            </Helmet>
       <h1
         className=" font-bold text-center mb-10"
         data-aos="fade-down"

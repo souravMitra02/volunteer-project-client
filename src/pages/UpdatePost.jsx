@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet";
 
 const UpdatePost = () => {
   const { id } = useParams();
@@ -54,6 +55,9 @@ const UpdatePost = () => {
   return (
     <section  data-aos="fade-up"
       className="max-w-4xl mx-auto px-4 md:px-8 py-12 mt-10">
+      <Helmet>
+              <title>Update Post | Volunteer Hub</title>
+            </Helmet>
       <div className="shadow-2xl rounded-2xl p-10 border-2 border-white/40 dark:border-orange-500">
       <h2 className="text-3xl text-orange-600 font-bold mb-4 text-center">Update Your Post</h2>
       <form onSubmit={handleUpdate} className="space-y-4">

@@ -2,6 +2,7 @@ import React, { useEffect, useState, use } from "react";
 import { useParams, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -53,6 +54,9 @@ const PostDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 ">
+      <Helmet>
+              <title>Post Details | Volunteer Hub</title>
+            </Helmet>
       <img
         src={post.thumbnail}
         alt={post.postTitle}

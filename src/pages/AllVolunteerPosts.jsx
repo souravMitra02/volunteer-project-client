@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Spinner from "../components/Spinner";
 import VolunteerCard from "../components/VolunteerCard";
+import { Helmet } from "react-helmet";
 
 const GridIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,6 +44,9 @@ const AllVolunteerPosts = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 mt-20">
+      <Helmet>
+        <title>All Volunteer | Volunteer Hub</title>
+      </Helmet>
       {/* Search & Toggle Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6">
         <div className="flex flex-grow gap-2 w-full">

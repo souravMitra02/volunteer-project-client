@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet";
 
 const AddVolunteerPost = () => {
   const { user } = useContext(AuthContext);
@@ -57,6 +58,9 @@ const AddVolunteerPost = () => {
       data-aos="fade-up"
       className="max-w-4xl mx-auto px-4 md:px-8 py-12 mt-20"
     >
+      <Helmet>
+              <title>Add Post | Volunteer Hub</title>
+            </Helmet>
       <div className="shadow-2xl rounded-2xl p-10 border-2 border-white/40 dark:border-orange-500">
         <h2 className="text-3xl font-bold mb-8 text-center text-orange-600 tracking-wide">
           Add Volunteer Need Post

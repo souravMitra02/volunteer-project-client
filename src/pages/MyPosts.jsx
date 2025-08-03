@@ -7,6 +7,7 @@ import MyVolunteerRequestsTable from "./MyVolunteerRequestsTable";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import axiosSecure from "../hooks/axiosSecure";
 import { use } from "react";
+import { Helmet } from "react-helmet";
 
 const MyPosts = () => {
   const { user } = use(AuthContext);
@@ -63,6 +64,9 @@ const MyPosts = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16 lg:mt-10 md:mt-8 mt-20">
+      <Helmet>
+              <title>My Post | Volunteer Hub</title>
+            </Helmet>
       {/* My Posts Section */}
       <section>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-orange-600 mb-8 text-center  lg:mt-10">
