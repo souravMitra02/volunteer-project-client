@@ -30,7 +30,7 @@ const VolunteerCard = ({ post }) => {
           className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
         />
-        {/* Status Badge */}
+        
         <div
           className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase ${
             status === "Urgent"
