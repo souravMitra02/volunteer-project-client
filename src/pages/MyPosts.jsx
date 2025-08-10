@@ -155,7 +155,7 @@ const MyPosts = () => {
               ))}
             </div>
 
-            {/* Table layout for medium and larger devices */}
+            {/* Table layout for  larger devices */}
             <div className="overflow-x-auto rounded-lg shadow-lg hidden md:block">
               <table className="min-w-full border border-gray-300 ">
                 <thead className=" text-sm font-semibold">
