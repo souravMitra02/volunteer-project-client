@@ -25,7 +25,7 @@ const Footer = () => {
             {[
               { name: "Home", href: "/" },
               { name: "All Posts", href: "/posts" },
-              { name: "Add Volunteer Post", href: "/add-post" },
+              { name: "Add Volunteer Post", href: "/volunteer-posts" },
             ].map((link, idx) => (
               <li key={idx}>
                 <a
