@@ -1,6 +1,4 @@
-import {
-  createBrowserRouter
-} from "react-router";
+import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
@@ -9,7 +7,7 @@ import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost";
 import PostDetails from "../pages/PostDetails";
-import AllVolunteerPosts from "../pages/AllVolunteerPosts";  
+import AllVolunteerPosts from "../pages/AllVolunteerPosts";
 import MyPosts from "../pages/MyPosts";
 import VolunteerDetails from "../pages/VolunteerDetails";
 import BeVolunteerPage from "../pages/BeVolunteerModal";
@@ -26,85 +24,79 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
-     
+
       {
-        path: '/posts',
-        element: <AllVolunteerPosts></AllVolunteerPosts>
+        path: "/posts",
+        element: <AllVolunteerPosts></AllVolunteerPosts>,
       },
-   
+
       {
-        path: 'contact',
-        element : <Contact></Contact>
-      },
-      {
-        path: 'reports',
-        element : <ImpactReport></ImpactReport>
+        path: "contact",
+        element: <Contact></Contact>,
       },
       {
-        path: 'about',
-        element : <About></About>
+        path: "reports",
+        element: <ImpactReport></ImpactReport>,
       },
       {
-        path: '/volunteer-posts',
+        path: "about",
+        element: <About></About>,
+      },
+      {
+        path: "/volunteer-posts",
         element: (
           <PrivateRoute>
             <AddVolunteerPost></AddVolunteerPost>
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "/volunteer-posts/:id",
-          element:(
-    <PrivateRoute>
-    <VolunteerDetails></VolunteerDetails>
-    </PrivateRoute>
-          )
-        
+        element: <VolunteerDetails></VolunteerDetails>,
       },
-     
+
       {
-  path: '/be-volunteer/:id',
-  element: (
-    <PrivateRoute>
-      <BeVolunteerPage></BeVolunteerPage>
-    </PrivateRoute>
-  )
-},
+        path: "/be-volunteer/:id",
+        element: (
+          <PrivateRoute>
+            <BeVolunteerPage></BeVolunteerPage>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/post/:id",
         element: (
           <PrivateRoute>
             <PostDetails></PostDetails>
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path:"/update-post/:id",
+        path: "/update-post/:id",
         element: (
           <PrivateRoute>
             <UpdatePost></UpdatePost>
           </PrivateRoute>
-        )
-   },
+        ),
+      },
       {
         path: "/my-posts",
         element: (
           <PrivateRoute>
             <MyPosts></MyPosts>
           </PrivateRoute>
-        )
+        ),
       },
-      
-    ]
+    ],
   },
 ]);
