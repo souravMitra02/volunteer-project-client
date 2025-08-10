@@ -75,7 +75,7 @@ const VolunteerCard = ({ post }) => {
           </div>
         </div>
 
-        {/* Button */}
+     
         <Link
           to={`/volunteer-posts/${_id}`}
           className="mt-5 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 text-white font-bold px-4 py-2 rounded-xl shadow-md transition text-center "
