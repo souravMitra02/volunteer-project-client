@@ -76,7 +76,7 @@ const VolunteerDetails = () => {
               ) : (
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition  font-bold px-6 py-3 rounded-xl shadow-lg"
+                  className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition  font-bold px-6 py-3 rounded-xl shadow-lg text-white"
                 >
                    Be a Volunteer
                 </button>
