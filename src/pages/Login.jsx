@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { use,  useState } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext/AuthContext";
@@ -7,7 +7,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 const Login = () => {
-  const { loginUser, googleLogin } = useContext(AuthContext);
+  const { loginUser, googleLogin } = use(AuthContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -40,7 +40,7 @@ const Login = () => {
       });
 
       // Send welcome email
-      await fetch("http://localhost:3000/send-email", {
+      await fetch("https://jp-server-ten.vercel.app/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -65,12 +65,10 @@ const Login = () => {
   // Google Login
   // =====================
   const handleGoogleLogin = async () => {
-
     try {
       const result = await googleLogin();
       const userName = result.user.displayName || "Volunteer";
       const userEmail = result.user.email;
-    
 
       Swal.fire({
         icon: "success",
@@ -80,7 +78,7 @@ const Login = () => {
       });
 
       // Send welcome email
-      await fetch("http://localhost:3000/send-email", {
+      await fetch("https://jp-server-ten.vercel.app/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
