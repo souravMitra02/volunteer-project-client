@@ -8,7 +8,9 @@ const VolunteerDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(`https://jp-server-ten.vercel.app/volunteer-posts/${id}`)
+    fetch(
+      `https://volunteer-project-server-wine.vercel.app/volunteer-posts/${id}`,
+    )
       .then((res) => res.json())
       .then((data) => setPost(data));
   }, [id]);
@@ -46,23 +48,40 @@ const VolunteerDetails = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm ">
                 <p>
-                  <span className="font-semibold text-indigo-600"> Category:</span> {post.category}
+                  <span className="font-semibold text-indigo-600">
+                    {" "}
+                    Category:
+                  </span>{" "}
+                  {post.category}
                 </p>
                 <p>
-                  <span className="font-semibold text-indigo-600"> Location:</span> {post.location}
+                  <span className="font-semibold text-indigo-600">
+                    {" "}
+                    Location:
+                  </span>{" "}
+                  {post.location}
                 </p>
                 <p>
-                  <span className="font-semibold text-indigo-600"> Deadline:</span>{" "}
+                  <span className="font-semibold text-indigo-600">
+                    {" "}
+                    Deadline:
+                  </span>{" "}
                   {new Date(post.deadline).toLocaleDateString()}
                 </p>
                 <p>
-                  <span className="font-semibold text-indigo-600"> Volunteers Needed:</span>{" "}
+                  <span className="font-semibold text-indigo-600">
+                    {" "}
+                    Volunteers Needed:
+                  </span>{" "}
                   {post.volunteersNeeded}
                 </p>
               </div>
 
               <p className=" md:text-left">
-                <span className="font-semibold text-indigo-600"> Organizer:</span>{" "}
+                <span className="font-semibold text-indigo-600">
+                  {" "}
+                  Organizer:
+                </span>{" "}
                 {post.organizerName} ({post.organizerEmail})
               </p>
             </div>
@@ -71,14 +90,14 @@ const VolunteerDetails = () => {
             <div className="mt-6">
               {post.volunteersNeeded === 0 ? (
                 <p className="text-red-600 font-semibold bg-red-100 px-4 py-2 rounded-lg text-center">
-                   Volunteers already fulfilled! You cannot join this event.
+                  Volunteers already fulfilled! You cannot join this event.
                 </p>
               ) : (
                 <button
                   onClick={() => setShowModal(true)}
                   className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-600 hover:to-orange-600 transition  font-bold px-6 py-3 rounded-xl shadow-lg text-white"
                 >
-                   Be a Volunteer
+                  Be a Volunteer
                 </button>
               )}
             </div>

@@ -1,4 +1,4 @@
-import React, { use,  useState } from "react";
+import React, { use, useState } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext/AuthContext";
@@ -40,15 +40,18 @@ const Login = () => {
       });
 
       // Send welcome email
-      await fetch("https://jp-server-ten.vercel.app/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: userEmail,
-          userName: userName,
-          postTitle: "Welcome Back to Volunteer Hub!",
-        }),
-      });
+      await fetch(
+        "https://volunteer-project-server-wine.vercel.app/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: userEmail,
+            userName: userName,
+            postTitle: "Welcome Back to Volunteer Hub!",
+          }),
+        },
+      );
 
       navigate("/");
     } catch (error) {
@@ -78,15 +81,18 @@ const Login = () => {
       });
 
       // Send welcome email
-      await fetch("https://jp-server-ten.vercel.app/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: userEmail,
-          userName: userName,
-          postTitle: "Welcome Back to Volunteer Hub!",
-        }),
-      });
+      await fetch(
+        "https://volunteer-project-server-wine.vercel.app/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: userEmail,
+            userName: userName,
+            postTitle: "Welcome Back to Volunteer Hub!",
+          }),
+        },
+      );
 
       navigate("/");
     } catch (error) {

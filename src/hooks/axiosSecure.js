@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://jp-server-ten.vercel.app",
+  baseURL: "https://volunteer-project-server-wine.vercel.app",
 });
 
 axiosSecure.interceptors.request.use((config) => {

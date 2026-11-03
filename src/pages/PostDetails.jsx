@@ -15,7 +15,9 @@ const PostDetails = () => {
     if (!user) {
       navigate("/login");
     } else {
-      fetch(`https://jp-server-ten.vercel.app/volunteer-posts/${id}`)
+      fetch(
+        `https://volunteer-project-server-wine.vercel.app/volunteer-posts/${id}`,
+      )
         .then((res) => res.json())
         .then((data) => setPost(data))
         .catch((err) => console.error(err));
@@ -34,15 +36,22 @@ const PostDetails = () => {
       status: "requested",
     };
 
-    fetch("https://jp-server-ten.vercel.app/volunteer-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestData),
-    })
+    fetch(
+      "https://volunteer-project-server-wine.vercel.app/volunteer-request",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestData),
+      },
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          Swal.fire("Requested!", "You have requested successfully.", "success");
+          Swal.fire(
+            "Requested!",
+            "You have requested successfully.",
+            "success",
+          );
           setShowModal(false);
         } else {
           Swal.fire("Failed!", "You have already requested.", "error");
@@ -55,21 +64,36 @@ const PostDetails = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 ">
       <Helmet>
-              <title>Post Details | Volunteer Hub</title>
-            </Helmet>
+        <title>Post Details | Volunteer Hub</title>
+      </Helmet>
       <img
         src={post.thumbnail}
         alt={post.postTitle}
         className="w-full h-64 object-cover rounded-lg shadow mb-6"
       />
-      <h1 className="text-4xl font-bold mb-4 text-blue-800">{post.postTitle}</h1>
+      <h1 className="text-4xl font-bold mb-4 text-blue-800">
+        {post.postTitle}
+      </h1>
       <div className="space-y-2">
-        <p><strong>Description:</strong> {post.description}</p>
-        <p><strong>Category:</strong> {post.category}</p>
-        <p><strong>Location:</strong> {post.location}</p>
-        <p><strong>Deadline:</strong> {post.deadline}</p>
-        <p><strong>Volunteers Needed:</strong> {post.volunteersNeeded}</p>
-        <p><strong>Organizer:</strong> {post.organizerName} ({post.organizerEmail})</p>
+        <p>
+          <strong>Description:</strong> {post.description}
+        </p>
+        <p>
+          <strong>Category:</strong> {post.category}
+        </p>
+        <p>
+          <strong>Location:</strong> {post.location}
+        </p>
+        <p>
+          <strong>Deadline:</strong> {post.deadline}
+        </p>
+        <p>
+          <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
+        </p>
+        <p>
+          <strong>Organizer:</strong> {post.organizerName} (
+          {post.organizerEmail})
+        </p>
       </div>
 
       <button
@@ -82,9 +106,21 @@ const PostDetails = () => {
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-center text-green-700">Volunteer Request</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center text-green-700">
+              Volunteer Request
+            </h2>
             <form onSubmit={handleRequest} className="space-y-3">
-              {["thumbnail", "postTitle", "description", "category", "location", "volunteersNeeded", "deadline", "organizerName", "organizerEmail"].map((field, index) => (
+              {[
+                "thumbnail",
+                "postTitle",
+                "description",
+                "category",
+                "location",
+                "volunteersNeeded",
+                "deadline",
+                "organizerName",
+                "organizerEmail",
+              ].map((field, index) => (
                 <input
                   key={index}
                   readOnly
@@ -107,7 +143,9 @@ const PostDetails = () => {
                 placeholder="Enter your suggestion"
                 className="textarea textarea-bordered w-full"
               />
-              <button type="submit" className="btn btn-success w-full">Request</button>
+              <button type="submit" className="btn btn-success w-full">
+                Request
+              </button>
             </form>
             <button
               onClick={() => setShowModal(false)}

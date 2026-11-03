@@ -12,7 +12,7 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
 
     setLoading(true);
     fetch(
-      `https://jp-server-ten.vercel.app/volunteer-requests?email=${userEmail}`
+      `https://volunteer-project-server-wine.vercel.app/volunteer-requests?email=${userEmail}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -36,23 +36,26 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://jp-server-ten.vercel.app/cancel-request/${requestId}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://volunteer-project-server-wine.vercel.app/cancel-request/${requestId}`,
+          {
+            method: "DELETE",
+          },
+        )
           .then((res) => res.json())
           .then(() => {
             setRequests((prev) => prev.filter((req) => req._id !== requestId));
             Swal.fire(
               "Cancelled!",
               `Your volunteer request for \"${postTitle}\" has been cancelled.`,
-              "success"
+              "success",
             );
           })
           .catch(() => {
             Swal.fire(
               "Error!",
               "Something went wrong while cancelling your request.",
-              "error"
+              "error",
             );
           });
       }
@@ -132,13 +135,18 @@ const MyVolunteerRequestsTable = ({ userEmail }) => {
             </h2>
             <div className="text-sm space-y-1">
               <p>
-                <span className="font-medium">Requested On:</span> {req.deadline ? new Date(req.deadline).toLocaleDateString() : "N/A"}
+                <span className="font-medium">Requested On:</span>{" "}
+                {req.deadline
+                  ? new Date(req.deadline).toLocaleDateString()
+                  : "N/A"}
               </p>
               <p>
-                <span className="font-medium">Organizer:</span> {req.organizerName || "N/A"}
+                <span className="font-medium">Organizer:</span>{" "}
+                {req.organizerName || "N/A"}
               </p>
               <p>
-                <span className="font-medium">Location:</span> {req.location || "N/A"}
+                <span className="font-medium">Location:</span>{" "}
+                {req.location || "N/A"}
               </p>
             </div>
             <button

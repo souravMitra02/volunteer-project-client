@@ -26,13 +26,16 @@ const BeVolunteerModal = ({ post, closeModal }) => {
       status: "requested",
     };
 
-    fetch("https://jp-server-ten.vercel.app/volunteer-request", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    fetch(
+      "https://volunteer-project-server-wine.vercel.app/volunteer-request",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
       },
-      body: JSON.stringify(requestData),
-    })
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertResult?.insertedId) {
@@ -47,7 +50,6 @@ const BeVolunteerModal = ({ post, closeModal }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-40 px-4 ">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 relative overflow-y-auto max-h-[90vh] ">
-        
         <button
           onClick={closeModal}
           className="absolute top-3 right-3 text-red-600 text-2xl font-bold hover:text-red-800 transition"
