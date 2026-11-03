@@ -7,7 +7,7 @@ const VolunteerNeedsNow = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://jp-server-ten.vercel.app/volunteer-now")
+    fetch("https://volunteer-project-server-wine.vercel.app/volunteer-now")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);

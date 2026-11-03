@@ -15,43 +15,71 @@ const AddVolunteerPost = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const form = e.target;
 
-    const newPost = {
-      thumbnail: form.thumbnail.value,
-      postTitle: form.postTitle.value,
-      description: form.description.value,
-      category: form.category.value,
-      location: form.location.value,
-      volunteersNeeded: parseInt(form.volunteersNeeded.value),
-      deadline,
-      organizerName: user?.displayName,
-      organizerEmail: user?.email,
-    };
-
-    fetch("https://jp-server-ten.vercel.app/volunteer-posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPost),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire(
-            "✅ Success!",
-            "Volunteer post added successfully!",
-            "success"
-          );
-          form.reset();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        Swal.fire("❌ Error!", "Something went wrong.", "error");
-      });
+  const newPost = {
+    thumbnail: form.thumbnail.value,
+    postTitle: form.postTitle.value,
+    description: form.description.value,
+    category: form.category.value,
+    location: form.location.value,
+    volunteersNeeded: Number(form.volunteersNeeded.value),
+    deadline,
+    organizerName: user?.displayName,
+    organizerEmail: user?.email,
   };
+
+  try {
+    const res = await fetch(
+      "https://volunteer-project-server-wine.vercel.app/volunteer-posts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPost),
+      }
+    );
+
+    const responseText = await res.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      console.error("Server returned non-JSON response:", responseText);
+      throw new Error(`Invalid server response. Status: ${res.status}`);
+    }
+
+    if (!res.ok) {
+      throw new Error(data.message || `Request failed: ${res.status}`);
+    }
+
+    if (data.insertResult?.insertedId || data.insertedId) {
+      Swal.fire(
+        "Success!",
+        "Volunteer post added successfully!",
+        "success"
+      );
+      form.reset();
+      setDeadline(new Date());
+    } else {
+      console.log("Server response:", data);
+      Swal.fire("Notice", data.message || "Post was not added.", "info");
+    }
+  } catch (err) {
+    console.error("Add Volunteer Post Error:", err);
+
+    Swal.fire(
+      "Error!",
+      err.message || "Something went wrong.",
+      "error"
+    );
+  }
+};
 
   return (
     <section
